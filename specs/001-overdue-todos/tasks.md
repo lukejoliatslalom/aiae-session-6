@@ -12,8 +12,8 @@ exception rationale in the tasks list.
 
 **Purpose**: Testing fixtures and helpers used across stories
 
-- [ ] T001 [P] Add overdue-focused mock todos in packages/frontend/src/__mocks__/todoData.js
-- [ ] T002 [P] Add deterministic date helpers for tests in packages/frontend/src/__tests__/testUtils.js
+- [x] T001 [P] Add overdue-focused mock todos in packages/frontend/src/__mocks__/todoData.js
+- [x] T002 [P] Add deterministic date helpers for tests in packages/frontend/src/__tests__/testUtils.js
 
 ---
 
@@ -21,8 +21,8 @@ exception rationale in the tasks list.
 
 **Purpose**: Shared overdue calculation logic used by multiple stories
 
-- [ ] T003 Create overdue utility function in packages/frontend/src/utils/dateUtils.js
-- [ ] T004 [P] Add unit tests for overdue utility in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [x] T003 Create overdue utility function in packages/frontend/src/utils/dateUtils.js
+- [x] T004 [P] Add unit tests for overdue utility in packages/frontend/src/utils/__tests__/dateUtils.test.js
 
 **Checkpoint**: Shared overdue logic and tests complete
 
@@ -37,12 +37,12 @@ only appears on past-due incomplete todos.
 
 ### Tests for User Story 1 ⚠️
 
-- [ ] T005 [P] [US1] Add overdue badge render tests in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [x] T005 [P] [US1] Add overdue badge render tests in packages/frontend/src/components/__tests__/TodoCard.test.js
 
 ### Implementation for User Story 1
 
-- [ ] T006 [US1] Compute overdue state using date utility in packages/frontend/src/components/TodoCard.js
-- [ ] T007 [P] [US1] Add overdue badge styling in packages/frontend/src/App.css
+- [x] T006 [US1] Compute overdue state using date utility in packages/frontend/src/components/TodoCard.js
+- [x] T007 [P] [US1] Add overdue badge styling in packages/frontend/src/App.css
 
 **Checkpoint**: Overdue badge renders correctly for past-due incomplete items
 
@@ -56,11 +56,11 @@ only appears on past-due incomplete todos.
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T008 [P] [US2] Add interaction test for overdue badge updates in packages/frontend/src/__tests__/App.test.js
+- [x] T008 [P] [US2] Add interaction test for overdue badge updates in packages/frontend/src/__tests__/App.test.js
 
 ### Implementation for User Story 2
 
-- [ ] T009 [US2] Ensure overdue logic treats completed values consistently in packages/frontend/src/components/TodoCard.js
+- [x] T009 [US2] Ensure overdue logic treats completed values consistently in packages/frontend/src/components/TodoCard.js
 
 **Checkpoint**: Badge updates immediately after edits or completion changes
 

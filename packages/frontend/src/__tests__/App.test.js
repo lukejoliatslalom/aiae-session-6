@@ -3,6 +3,7 @@ import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import App from '../App';
+import { resetMockDate, setMockDate } from '../testUtils/dateUtils';
 
 // Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
@@ -123,6 +124,7 @@ beforeAll(() => server.listen());
 afterEach(() => {
   server.resetHandlers();
   localStorageMock.clear();
+  resetMockDate();
 });
 afterAll(() => server.close());
 
@@ -231,5 +233,44 @@ describe('App Component', () => {
     const themToggleAfter = screen.getByRole('button', { name: /Switch to light mode/ });
     fireEvent.click(themToggleAfter);
     expect(localStorage.getItem('todoAppTheme')).toBe('light');
+  });
+
+  test('updates overdue badge after completion toggle', async () => {
+    setMockDate('2026-02-05T12:00:00');
+    server.use(
+      rest.get('/api/todos', (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json([
+            { id: 10, title: 'Overdue Task', dueDate: '2026-02-01', completed: 0, createdAt: '2026-01-01T00:00:00Z' }
+          ])
+        );
+      }),
+      rest.patch('/api/todos/:id/toggle', (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            id: parseInt(req.params.id),
+            title: 'Overdue Task',
+            dueDate: '2026-02-01',
+            completed: 1,
+            createdAt: '2026-01-01T00:00:00Z'
+          })
+        );
+      })
+    );
+
+    render(<App />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Overdue')).toBeInTheDocument();
+    });
+
+    const checkbox = screen.getByRole('checkbox', { name: /Overdue Task/ });
+    fireEvent.click(checkbox);
+
+    await waitFor(() => {
+      expect(screen.queryByText('Overdue')).not.toBeInTheDocument();
+    });
   });
 });

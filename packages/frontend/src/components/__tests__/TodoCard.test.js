@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import TodoCard from '../TodoCard';
+import { resetMockDate, setMockDate } from '../../testUtils/dateUtils';
 
 describe('TodoCard Component', () => {
   const mockTodo = {
@@ -19,6 +20,10 @@ describe('TodoCard Component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    resetMockDate();
   });
 
   it('should render todo title and due date', () => {
@@ -98,5 +103,21 @@ describe('TodoCard Component', () => {
     render(<TodoCard todo={todoNoDate} {...mockHandlers} isLoading={false} />);
     
     expect(screen.queryByText(/Due:/)).not.toBeInTheDocument();
+  });
+
+  it('should show overdue badge for past due incomplete todos', () => {
+    setMockDate('2026-02-05T12:00:00');
+    const overdueTodo = { ...mockTodo, dueDate: '2026-02-01', completed: 0 };
+    render(<TodoCard todo={overdueTodo} {...mockHandlers} isLoading={false} />);
+
+    expect(screen.getByText('Overdue')).toBeInTheDocument();
+  });
+
+  it('should not show overdue badge for completed todos', () => {
+    setMockDate('2026-02-05T12:00:00');
+    const completedTodo = { ...mockTodo, dueDate: '2026-02-01', completed: 1 };
+    render(<TodoCard todo={completedTodo} {...mockHandlers} isLoading={false} />);
+
+    expect(screen.queryByText('Overdue')).not.toBeInTheDocument();
   });
 });
