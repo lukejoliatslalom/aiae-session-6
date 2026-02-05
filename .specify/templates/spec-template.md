@@ -95,6 +95,16 @@
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
+### Out of Scope *(mandatory)*
+
+<!--
+  ACTION REQUIRED: List items explicitly excluded by the constitution or
+  functional requirements to prevent scope drift.
+-->
+
+- [Out-of-scope item 1]
+- [Out-of-scope item 2]
+
 ### Key Entities *(include if feature involves data)*
 
 - **[Entity 1]**: [What it represents, key attributes without implementation]

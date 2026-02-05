@@ -31,7 +31,11 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Scope aligned with functional requirements and out-of-scope boundaries.
+- UI impacts follow the Halloween theme, layout, and accessibility rules.
+- Testing plan includes unit/integration coverage with 80%+ target.
+- Code quality plan follows formatting, naming, SRP/DRY/KISS guidance.
+- Reliability plan covers error handling and user feedback on failures.
 
 ## Project Structure
 
