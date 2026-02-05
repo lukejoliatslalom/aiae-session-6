@@ -5,6 +5,14 @@
 **Status**: Draft  
 **Input**: User description: "Support for Overdue Todo Items. As a todo application user, I want to easily identify and distinguish overdue tasks in my todo list so that I can prioritize my work and quickly see which tasks are past their due date. Users need a clear, visual way to identify which todos have not been completed by their due date."
 
+## Clarifications
+
+### Session 2026-02-05
+
+- Q: How should overdue items be visually indicated? → A: Add a red "Overdue" badge next to the due date.
+- Q: Which date/time should determine overdue status? → A: Use the client local date/time.
+- Q: Should the overdue badge include an icon or be text-only? → A: Text-only.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Identify overdue todos in the list (Priority: P1)
@@ -22,7 +30,7 @@ items and verify that only past-due incomplete items are visually distinguished.
 
 1. **Given** an incomplete todo with a due date before the current local date,
    **When** the list is displayed, **Then** the todo is visually marked as
-   overdue.
+  overdue with a red, text-only "Overdue" badge next to the due date.
 2. **Given** an incomplete todo with a due date equal to the current local date,
    **When** the list is displayed, **Then** the todo is not marked as overdue.
 3. **Given** an incomplete todo with no due date, **When** the list is displayed,
@@ -66,7 +74,7 @@ verify the overdue indicator updates immediately.
 - **FR-001**: The system MUST determine overdue status for an incomplete todo
   whose due date is before the current local date.
 - **FR-002**: The system MUST visually distinguish overdue todos in the list
-  using a consistent indicator or styling.
+  using a red, text-only "Overdue" badge next to the due date.
 - **FR-003**: The system MUST NOT mark a todo as overdue if it is completed or
   if no due date is set.
 - **FR-004**: The system MUST update the overdue indicator immediately after a
@@ -92,7 +100,7 @@ verify the overdue indicator updates immediately.
 
 ### Assumptions
 
-- Due dates are interpreted as date-only values and compared to the current
+- Due dates are interpreted as date-only values and compared to the client
   local date.
 - Overdue status is derived on display and does not require new persisted data.
 
